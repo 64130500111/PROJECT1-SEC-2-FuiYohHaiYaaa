@@ -1,18 +1,30 @@
 [
     {
-        "type":"Fastfood"
+        "type":"All Items",
+        "iconURL":"src/assets/FoodTypeIcons/Allitem.png"
+       
+       
+    },
+    {
+        "type":"Fastfood",
+        "iconURL":"src/assets/FoodTypeIcons/FastFood.png"
+       
         
     },
     {
-        "type":"Healthy"
+        "type":"Healthy",
+        "iconURL":"src/assets/FoodTypeIcons/HealthyFood.png"
     },
     {
-        "type":"Noodles"
+        "type":"Noodles",
+        "iconURL":"src/assets/FoodTypeIcons/Noodles.png"
     },
     {
-        "type":"Curry"
+        "type":"Curry",
+        "iconURL":"src/assets/FoodTypeIcons/Curry.png"
     },
     {
-        "type":"Isaan"
+        "type":"Isaan",
+        "iconURL":"src/assets/FoodTypeIcons/IsaanFood.png"
     }
 ]

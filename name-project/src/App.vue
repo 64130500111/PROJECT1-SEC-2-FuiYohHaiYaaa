@@ -1,13 +1,23 @@
 <script setup>
+import { ref } from "vue";
 import IcOutlineHome from "./assets/icons/IcOutlineHome.vue";
-import category from "./data/items.json"
+import MaterialSymbolsSearchRounded from "./assets/icons/MaterialSymbolsSearchRounded.vue";
+import category from "./data/items.json";
+
+const selected = ref(false);
 </script>
 
 <template>
-  <div id="main">
-    <div id="secondary" class="flex flex-row ">
+  <div id="main" class="w-full h-[60vw] bg-red-100">
+    <div
+      id="secondary"
+      class="flex flex-row relative w-[1336px] h-[790px] top-[86px] left-[101px] border rounded-[59px]"
+    >
       <!-- menu -->
-      <div id="menu" class="flex flex-col border border-red-500">
+      <div
+        id="menu"
+        class="flex flex-col w-[20%] h-[100%] border border-red-500"
+      >
         <div id="profile" class="flex flex-col border border-blue-300 mt-10">
           <img id="Pic" src="./assets/Dr.rash.jpg" alt="profilePic" />
           <h1 id="name" class="text-center text-sm">Dr. Marcus Rashford</h1>
@@ -20,19 +30,32 @@ import category from "./data/items.json"
         </div>
       </div>
       <!-- order -->
-      <div id="order" class="flex flex-row border border-r-purple-500">
+      <div
+        id="order"
+        class="flex flex-row w-[80%] h-[91%] border border-r-purple-500 z-[20]"
+      >
         <div id="selection" class="flex flex-col">
           <div id="type" class="flex flex-col border border-black">
             <div class="flex justify-between h-[50%]">
               <!-- selection top -->
-              <p class="font-['Baloo'] text-[48px]">Welcome to ... </p>
-              <div>Hello</div>
+              <div class="mt-[50px] ml-[50px]">
+                <p class="font-['Baloo'] text-[48px]">Welcome to Hello</p>
+              </div>
+              <button class="mr-[50px]">
+                <MaterialSymbolsSearchRounded />
+              </button>
             </div>
             <!-- selection bottom -->
-              <ul class="flex flex-row h-[50%]">
-                <li v-for="(list, index) in category" :key="index">
-                  <div>Hello</div>
-                  {{ list.type }}
+            <ul class="flex flex-row ml-[50px] gap-5 h-[50%]">
+                <li 
+                v-for="({type, iconURL}, index) in category" :key="index" 
+                class="w-auto h-[125px] border rounded-[59px]"
+                @click="selected = !selected"
+                :class="selected ? 'bg-red-500': ' bg-[#F4F6F8]'">
+                  <div class="text-center font-['?????']" >
+                    <img :src="iconURL" class="mt-1">
+                    <div class="mt-2">{{ type }}</div>
+                  </div>
                 </li>
               </ul>
           </div>
@@ -46,7 +69,6 @@ import category from "./data/items.json"
       </div>
     </div>
   </div>
-  
 </template>
 
 <style scoped>
@@ -54,10 +76,6 @@ import category from "./data/items.json"
 @import url(https://fonts.googleapis.com/css2?family=?????:wght@400);
 
 #main {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-
   /* background: conic-gradient(
     from 260.41deg at 69.86% 79.2%,
     #ffffff 0deg,
@@ -68,28 +86,17 @@ import category from "./data/items.json"
 }
 
 #secondary {
-  /* 1336/1440 910/1024 */
-  position: absolute;
-  width: 92.78%;
-  height: 88.87%;
-  margin: 3em;
-
-  /* background: conic-gradient(
+  background: conic-gradient(
     from 270deg at 102.36% 100%,
     #ffffff 0deg,
     #cbcbcb 90deg,
     #cfcdcd 180deg,
     #fffbfa 270deg,
     #fdebdd 360deg
-  ); */
-  /* opacity: 0.55; */
-  border-radius: 59px;
+  );
 }
 
 #menu {
-  /* 256/1336 910/910 */
-  width: 20%;
-  height: 100%;
 }
 
 #Pic {
@@ -100,9 +107,6 @@ import category from "./data/items.json"
 }
 
 #order {
-  /* 1047/1336 825/910 */
-  width: 80%;
-  height: 90.7%;
 }
 
 #selection {
@@ -126,5 +130,4 @@ import category from "./data/items.json"
   widows: 100%;
   height: 50%;
 }
-
 </style>
