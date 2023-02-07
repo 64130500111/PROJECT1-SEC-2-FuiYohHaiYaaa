@@ -26,9 +26,9 @@ const refNum = ref(0);
           <img id="profilepic" src="" alt="profilePic" class=""/>
           <h1 id="name" class="text-center text-xl font-['Baloo'] ">Dr. Marcus Rashford</h1>
         </div>
-        <div id="home" class="flex justify-center mt-[50px] font-['Baloo']">
+        <div id="home" class="flex justify-center mt-[50px] font-['Baloo'] cursor-pointer">
           <div id="home2" class="flex flex-row">
-            <div class="w-[61px] h-[57px] bg-white  rounded-[20px] shadow-lg relative pt-[10px]">
+            <div class="w-[61px] h-[57px] bg-white  rounded-[20px] shadow-lg relative pt-[10px] ">
               <IcOutlineHome id="homeIcon"/>
             </div>
             <p class="text-2xl m-auto ml-5">Home</p>
@@ -42,14 +42,16 @@ const refNum = ref(0);
       >
         <div id="selection" class="flex flex-col w-[65.14%] h-[100%]">
           <div id="type" class="flex flex-col w-[100%] h-[50%]">
-            <div class="flex justify-between h-[50%]">
+            <div class="flex flex-row justify-between h-[50%]">
               <!-- selection top -->
               <div class="mt-[50px] ml-[50px]">
                 <p class="font-['Baloo'] text-[48px]">Welcome to Hello</p>
               </div>
-              <button class="mr-[50px]">
-                <MaterialSymbolsSearchRounded />
-              </button>
+              <div class="w-[61px] h-[57px] bg-gray-200 rounded-[20px] shadow-lg mt-[55px]">
+                <button class="ml-[15px] mt-[12px]">
+                  <MaterialSymbolsSearchRounded />
+                </button>
+              </div>
             </div>
             <!-- selection bottom -->
             <ul class="flex flex-row ml-[50px] gap-3 h-[50%]">
