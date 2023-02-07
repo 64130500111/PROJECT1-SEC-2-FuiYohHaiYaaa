@@ -12,34 +12,36 @@ const refNum = ref(0);
 </script>
 
 <template>
-  <div id="main" class="w-full h-[60vw]">
+  <div id="main" class="w-full h-[100vh] pl-[50px] flex justify-center ">
     <div
       id="secondary"
-      class="flex flex-row relative w-[1336px] h-[790px] top-[86px] left-[101px] border rounded-[59px]"
+      class="flex flex-row w-[1336px] h-[790px] rounded-[59px] "
     >
       <!-- menu -->
       <div
         id="menu"
-        class="flex flex-col w-[20%] h-[100%] border border-red-500"
+        class="flex flex-col w-[20%] h-[100%]  "
       >
-        <div id="profile" class="flex flex-col border border-blue-300 mt-10">
-          <img id="Pic" src="./assets/Dr.rash.jpg" alt="profilePic" />
-          <h1 id="name" class="text-center text-sm">Dr. Marcus Rashford</h1>
+        <div id="profile" class="flex flex-col mt-10">
+          <img id="profilepic" src="" alt="profilePic" class=""/>
+          <h1 id="name" class="text-center text-xl font-['Baloo'] ">Dr. Marcus Rashford</h1>
         </div>
-        <div id="home" class="flex justify-center border border-green-400">
+        <div id="home" class="flex justify-center mt-[50px] font-['Baloo']">
           <div id="home2" class="flex flex-row">
-            <IcOutlineHome id="homeIcon" />
-            <div class="text-base ml-5">Home</div>
+            <div class="w-[61px] h-[57px] bg-white  rounded-[20px] shadow-lg relative pt-[10px]">
+              <IcOutlineHome id="homeIcon"/>
+            </div>
+            <p class="text-2xl m-auto ml-5">Home</p>
           </div>
         </div>
       </div>
       <!-- order -->
       <div
         id="order"
-        class="flex flex-row w-[80%] h-[91%] border border-r-purple-500 z-[20]"
+        class="flex flex-row w-[80%] h-[91%] bg-white rounded-[59px] mt-10 mr-6"
       >
-        <div id="selection" class="flex flex-col">
-          <div id="type" class="flex flex-col border border-black">
+        <div id="selection" class="flex flex-col w-[65.14%] h-[100%]">
+          <div id="type" class="flex flex-col w-[100%] h-[50%]">
             <div class="flex justify-between h-[50%]">
               <!-- selection top -->
               <div class="mt-[50px] ml-[50px]">
@@ -54,7 +56,7 @@ const refNum = ref(0);
               <li
                 v-for="({ type, iconURL }, index) in category"
                 :key="index"
-                class="target w-[89px] h-[130px] border rounded-[59px] bg-white text-black shadow-xl font-['?????'] cursor-pointer"
+                class="target w-[89px] h-[130px] rounded-[59px] bg-white text-black shadow-xl font-['?????'] cursor-pointer"
                 @click="isActive(index)"
                 :class="refNum === index ? 'bg-black' : 'bg-white'"
               >
@@ -67,13 +69,13 @@ const refNum = ref(0);
               </li>
             </ul>
           </div>
-          <div id="item" class="border border-black">
+          <div id="item" class="w-[100%] h-[50%]">
             <div>
               <h1>Selection type</h1>
             </div>
           </div>
         </div>
-        <div id="article" class="border border-black"></div>
+        <div id="article" class="w-[35%] h-[100%]"></div>
       </div>
     </div>
   </div>
@@ -107,44 +109,42 @@ const refNum = ref(0);
 }
 
 #menu {
-  z-index: 3;
+    /* border-color: red; */
 }
 
 #order {
-  z-index: 3;
+  /* border-color: purple; */
+  
 }
 
-#Pic {
+#profile {
+
+}
+
+#profilepic {
   width: 50px;
   height: 50px;
-
   margin: auto;
 }
 
+#home {
+
+}
+
 #selection {
-  /* 682/1047 825/825 */
-  width: 65.14%;
-  height: 100%;
+
 }
 
 #article {
-  /* 365/1047 825/825 */
-  width: 34.86%;
-  height: 100%;
+
 }
 
 #type {
-  width: 100%;
-  height: 50%;
+
 }
 
 #item {
-  widows: 100%;
-  height: 50%;
+ 
 }
 
-/* :target {
-  background-color: black;
-  color: white;
-} */
 </style>
