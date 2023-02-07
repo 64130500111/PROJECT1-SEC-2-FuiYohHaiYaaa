@@ -4,7 +4,12 @@ import IcOutlineHome from "./assets/icons/IcOutlineHome.vue";
 import MaterialSymbolsSearchRounded from "./assets/icons/MaterialSymbolsSearchRounded.vue";
 import category from "./data/items.json";
 
-const selected = ref(false);
+const isActive = (input) => {
+  return refNum.value = input
+}
+  
+
+const refNum = ref(0)
 </script>
 
 <template>
@@ -46,18 +51,21 @@ const selected = ref(false);
               </button>
             </div>
             <!-- selection bottom -->
-            <ul class="flex flex-row ml-[50px] gap-5 h-[50%]">
-                <li 
+            <ul class="flex flex-row ml-[50px] gap-3 h-[50%]">
+              
+                <li
                 v-for="({type, iconURL}, index) in category" :key="index" 
-                class="w-auto h-[125px] border rounded-[59px]"
-                @click="selected = !selected"
-                :class="selected ? 'bg-red-500': ' bg-[#F4F6F8]'">
-                  <div class="text-center font-['?????']" >
-                    <img :src="iconURL" class="mt-1">
-                    <div class="mt-2">{{ type }}</div>
-                  </div>
+                class="target w-[89px] h-[130px] border rounded-[59px] bg-white text-black shadow-xl font-['?????'] cursor-pointer"
+                @click="isActive(index)"
+                :class="refNum === index ? 'bg-black' : 'bg-white'"
+                >
+                  <div class=" text-center  mt-[20px]">
+                    <img :src="iconURL" class="ml-[10px]">
+                    <p :class="refNum === index ? 'text-white' : 'text-black'">{{ type }}</p>
+                  </div>        
                 </li>
-              </ul>
+              
+            </ul>
           </div>
           <div id="item" class="border border-black">
             <div>
@@ -130,4 +138,11 @@ const selected = ref(false);
   widows: 100%;
   height: 50%;
 }
+
+/* :target {
+  background-color: black;
+  color: white;
+} */
+
+
 </style>

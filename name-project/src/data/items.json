@@ -1,15 +1,11 @@
 [
     {
-        "type":"All Items",
+        "type":"All",
         "iconURL":"src/assets/FoodTypeIcons/Allitem.png"
-       
-       
     },
     {
         "type":"Fastfood",
-        "iconURL":"src/assets/FoodTypeIcons/FastFood.png"
-       
-        
+        "iconURL":"src/assets/FoodTypeIcons/FastFood.png"  
     },
     {
         "type":"Healthy",
