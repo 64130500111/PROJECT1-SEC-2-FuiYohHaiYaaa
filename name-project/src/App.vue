@@ -5,15 +5,14 @@ import MaterialSymbolsSearchRounded from "./assets/icons/MaterialSymbolsSearchRo
 import category from "./data/items.json";
 
 const isActive = (input) => {
-  return refNum.value = input
-}
-  
+  return (refNum.value = input);
+};
 
-const refNum = ref(0)
+const refNum = ref(0);
 </script>
 
 <template>
-  <div id="main" class="w-full h-[60vw] bg-red-100">
+  <div id="main" class="w-full h-[60vw]">
     <div
       id="secondary"
       class="flex flex-row relative w-[1336px] h-[790px] top-[86px] left-[101px] border rounded-[59px]"
@@ -52,19 +51,20 @@ const refNum = ref(0)
             </div>
             <!-- selection bottom -->
             <ul class="flex flex-row ml-[50px] gap-3 h-[50%]">
-              
-                <li
-                v-for="({type, iconURL}, index) in category" :key="index" 
+              <li
+                v-for="({ type, iconURL }, index) in category"
+                :key="index"
                 class="target w-[89px] h-[130px] border rounded-[59px] bg-white text-black shadow-xl font-['?????'] cursor-pointer"
                 @click="isActive(index)"
                 :class="refNum === index ? 'bg-black' : 'bg-white'"
-                >
-                  <div class=" text-center  mt-[20px]">
-                    <img :src="iconURL" class="ml-[10px]">
-                    <p :class="refNum === index ? 'text-white' : 'text-black'">{{ type }}</p>
-                  </div>        
-                </li>
-              
+              >
+                <div class="text-center mt-[20px]">
+                  <img :src="iconURL" class="ml-[10px]" />
+                  <p :class="refNum === index ? 'text-white' : 'text-black'">
+                    {{ type }}
+                  </p>
+                </div>
+              </li>
             </ul>
           </div>
           <div id="item" class="border border-black">
@@ -84,27 +84,34 @@ const refNum = ref(0)
 @import url(https://fonts.googleapis.com/css2?family=?????:wght@400);
 
 #main {
-  /* background: conic-gradient(
+  /* background-image: url(./assets/MainBG.png); */
+
+  background: conic-gradient(
     from 260.41deg at 69.86% 79.2%,
     #ffffff 0deg,
     #f76e21 120deg,
     #f76e21 240deg,
     #ffffff 360deg
-  ); */
+  );
 }
 
 #secondary {
   background: conic-gradient(
     from 270deg at 102.36% 100%,
-    #ffffff 0deg,
-    #cbcbcb 90deg,
-    #cfcdcd 180deg,
-    #fffbfa 270deg,
-    #fdebdd 360deg
+    rgba(255, 255, 255, 0.5) 0deg,
+    rgba(203, 203, 203, 0.5) 90deg,
+    rgba(207, 205, 205, 0.5) 180deg,
+    rgba(255, 251, 250, 0.5) 270deg,
+    rgba(253, 235, 221, 0.5) 360deg
   );
 }
 
 #menu {
+  z-index: 3;
+}
+
+#order {
+  z-index: 3;
 }
 
 #Pic {
@@ -112,9 +119,6 @@ const refNum = ref(0)
   height: 50px;
 
   margin: auto;
-}
-
-#order {
 }
 
 #selection {
@@ -143,6 +147,4 @@ const refNum = ref(0)
   background-color: black;
   color: white;
 } */
-
-
 </style>
