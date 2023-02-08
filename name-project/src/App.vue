@@ -71,9 +71,16 @@ const refNum = ref(0);
               </li>
             </ul>
           </div>
-          <div id="item" class="w-[100%] h-[50%]">
-            <div>
-              <h1>Selection type</h1>
+          <div id="item" class="w-[100%] h-[50%] flex flex-col">
+            <div class="flex flex-row">
+              <p>All Items</p>
+              <div>Icon</div>
+            </div>
+            <div class="grid grid-cols-3">
+              <div v-for="(list, index) in category" :key="index">
+                
+              </div>
+
             </div>
           </div>
         </div>
