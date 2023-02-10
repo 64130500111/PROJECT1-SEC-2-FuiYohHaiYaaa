@@ -1,45 +1,61 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import IcOutlineHome from "./assets/icons/IcOutlineHome.vue";
 import MaterialSymbolsSearchRounded from "./assets/icons/MaterialSymbolsSearchRounded.vue";
 import category from "./data/items.json";
 
+const refNum = ref(0);
+
+let menuArr = category[0].menu
+
+const search = ref(false);
+
+const userKeywords = ref('')
+
+let filterFood = category[0].menu
+
 const isActive = (input) => {
-  return (refNum.value = input);
+  // filter type
+  refNum.value = input;
+
+  // get array of food
+  menuArr = category[input].menu.sort((a, b) => a.name.localeCompare(b.name));
+  // console.log(menuArr)
+
+  // compute user keywords
+  filterFood = computed(() => { return menuArr.filter((arr) => arr.name.toLowerCase().includes(userKeywords.value.toLowerCase())) })
+
 };
 
-const refNum = ref(0);
+
+
+
+
+
 </script>
 
 <template>
-  <div id="main" class="w-full h-[100vh] pl-[50px] flex justify-center ">
-    <div
-      id="secondary"
-      class="flex flex-row w-[1336px] h-[790px] rounded-[59px] "
-    >
+  <div id="main" class="w-full h-[100vh] pl-[50px] flex justify-center">
+    <div id="secondary" class="flex flex-row w-[1336px] h-[790px] rounded-[59px] text-black">
       <!-- menu -->
-      <div
-        id="menu"
-        class="flex flex-col w-[20%] h-[100%]  "
-      >
-        <div id="profile" class="flex flex-col mt-10">
-          <img id="profilepic" src="" alt="profilePic" class=""/>
-          <h1 id="name" class="text-center text-xl font-['Baloo'] ">Dr. Marcus Rashford</h1>
+      <div id="menu" class="flex flex-col w-[20%] h-[100%]">
+        <div id="profile" class="flex flex-col mt-[80px]">
+          <img id="profilepic" src="./assets/Dr.rash.jpg" alt="profilePic" />
+          <h1 id="name" class="text-center text-xl font-['Baloo'] mt-3">
+            Dr. Marcus Rashford
+          </h1>
         </div>
         <div id="home" class="flex justify-center mt-[50px] font-['Baloo'] cursor-pointer">
           <div id="home2" class="flex flex-row">
-            <div class="w-[61px] h-[57px] bg-white  rounded-[20px] shadow-lg relative pt-[10px] ">
-              <IcOutlineHome id="homeIcon"/>
+            <div class="w-[61px] h-[57px] bg-white rounded-[20px] shadow-lg relative pt-[10px]">
+              <IcOutlineHome id="homeIcon" />
             </div>
             <p class="text-2xl m-auto ml-5">Home</p>
           </div>
         </div>
       </div>
       <!-- order -->
-      <div
-        id="order"
-        class="flex flex-row w-[80%] h-[91%] bg-white rounded-[59px] mt-10 mr-6"
-      >
+      <div id="order" class="flex flex-row w-[80%] h-[91%] bg-white rounded-[59px] mt-10 mr-6">
         <div id="selection" class="flex flex-col w-[65.14%] h-[100%]">
           <div id="type" class="flex flex-col w-[100%] h-[50%]">
             <div class="flex flex-row justify-between h-[50%]">
@@ -47,21 +63,19 @@ const refNum = ref(0);
               <div class="mt-[50px] ml-[50px]">
                 <p class="font-['Baloo'] text-[48px]">Welcome to Hello</p>
               </div>
-              <div class="w-[61px] h-[57px] bg-gray-200 rounded-[20px] shadow-lg mt-[55px]">
+              <!-- <div
+                class="w-[61px] h-[57px] bg-gray-200 rounded-[20px] shadow-lg mt-[55px] flex flex-row"
+              >
                 <button class="ml-[15px] mt-[12px]">
                   <MaterialSymbolsSearchRounded />
                 </button>
-              </div>
+              </div> -->
             </div>
             <!-- selection bottom -->
             <ul class="flex flex-row ml-[50px] gap-3 h-[50%]">
-              <li
-                v-for="({ type, iconURL }, index) in category"
-                :key="index"
+              <li v-for="({ type, iconURL }, index) in category" :key="index"
                 class="target w-[89px] h-[130px] rounded-[59px] bg-white text-black shadow-xl font-['?????'] cursor-pointer"
-                @click="isActive(index)"
-                :class="refNum === index ? 'bg-black' : 'bg-white'"
-              >
+                @click="isActive(index)" :class="refNum === index ? 'bg-black' : 'bg-white'">
                 <div class="text-center mt-[20px]">
                   <img :src="iconURL" class="ml-[10px]" />
                   <p :class="refNum === index ? 'text-white' : 'text-black'">
@@ -72,15 +86,25 @@ const refNum = ref(0);
             </ul>
           </div>
           <div id="item" class="w-[100%] h-[50%] flex flex-col">
-            <div class="flex flex-row">
-              <p>All Items</p>
-              <div>Icon</div>
+            <div class="flex flex-row h-[20%]">
+              <div class="w-full flex justify-center">
+                <p class="font-['Baloo'] text-[48px]">Menus</p>
+              </div>
+              <div class="w-full flex justify-end">
+                <div class="w-[45px] h-[45px] flex flex-row mt-3 bg-gray-200 rounded-xl shadow-lg">
+                  <button @click="search = !search" class="mt-[5px] ml-[10px]">
+                    <MaterialSymbolsSearchRounded />
+                  </button>
+                </div>
+                <input v-show="search" v-model.trim="userKeywords" type="text" placeholder="Type keyword..."
+                  class="w-[10em] h-8 rounded-md ml-3 mt-5 p-2 bg-white border border-gray-500">
+              </div>
+              <div class="w-full flex justify-end">
+                <div>Icon</div>
+              </div>
             </div>
             <div class="grid grid-cols-3">
-              <div v-for="(list, index) in category" :key="index">
-                
-              </div>
-
+              <p v-for="menu in filterFood">{{ menu.name }}</p>
             </div>
           </div>
         </div>
@@ -97,38 +121,31 @@ const refNum = ref(0);
 #main {
   /* background-image: url(./assets/MainBG.png); */
 
-  background: conic-gradient(
-    from 260.41deg at 69.86% 79.2%,
-    #ffffff 0deg,
-    #f76e21 120deg,
-    #f76e21 240deg,
-    #ffffff 360deg
-  );
+  background: conic-gradient(from 260.41deg at 69.86% 79.2%,
+      #ffffff 0deg,
+      #f76e21 120deg,
+      #f76e21 240deg,
+      #ffffff 360deg);
 }
 
 #secondary {
-  background: conic-gradient(
-    from 270deg at 102.36% 100%,
-    rgba(255, 255, 255, 0.5) 0deg,
-    rgba(203, 203, 203, 0.5) 90deg,
-    rgba(207, 205, 205, 0.5) 180deg,
-    rgba(255, 251, 250, 0.5) 270deg,
-    rgba(253, 235, 221, 0.5) 360deg
-  );
+  background: conic-gradient(from 270deg at 102.36% 100%,
+      rgba(255, 255, 255, 0.5) 0deg,
+      rgba(203, 203, 203, 0.5) 90deg,
+      rgba(207, 205, 205, 0.5) 180deg,
+      rgba(255, 251, 250, 0.5) 270deg,
+      rgba(253, 235, 221, 0.5) 360deg);
 }
 
 #menu {
-    /* border-color: red; */
+  /* border-color: red; */
 }
 
 #order {
   /* border-color: purple; */
-  
 }
 
-#profile {
-
-}
+#profile {}
 
 #profilepic {
   width: 50px;
@@ -136,24 +153,13 @@ const refNum = ref(0);
   margin: auto;
 }
 
-#home {
+#home {}
 
-}
+#selection {}
 
-#selection {
+#article {}
 
-}
+#type {}
 
-#article {
-
-}
-
-#type {
-
-}
-
-#item {
- 
-}
-
+#item {}
 </style>

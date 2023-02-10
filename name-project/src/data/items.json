@@ -1,62 +1,83 @@
 [
-    {
-        "type":"All",
-        "iconURL":"src/assets/FoodTypeIcons/Allitem.png",
-        "menu":[{"name":"A", "price":"0"}]
-    },
+  {
+    "type": "All",
+    "iconURL": "FoodTypeIcons/Allitem.png",
+    "menu": [
+      { "name": "Pizza", "price": "0" },
+      { "name": "French Fries", "price": "0" },
+      { "name": "Hamburger", "price": "0" },
+      { "name": "Beef Steak", "price": "0" },
+      { "name": "Hot Dog", "price": "0" },
+      { "name": "Salad", "price": "0" },
+      { "name": "Bake Rice and Cereal", "price": "0" },
+      { "name": "Salad Roll", "price": "0" },
+      { "name": "Yentafo", "price": "0" },
+      { "name": "Topped", "price": "0" },
+      { "name": "Spagetthi", "price": "0" },
+      { "name": "Green noodles", "price": "0" },
+      { "name": "Tom Yum Kung", "price": "0" },
+      { "name": "Green Curry", "price": "0" },
+      { "name": "Fish Organ Soup", "price": "0" },
+      { "name": "Clear Soup", "price": "0" },
+      { "name": "Papaya Salad", "price": "0" },
+      { "name": "Grilled Pork Neck", "price": "0" },
+      { "name": "Soiju", "price": "0" },
+      { "name": "Minced Pork Salad", "price": "0" }
+    ]
+  },
 
-    {
-        "type":"Fastfood",
-        "iconURL":"src/assets/FoodTypeIcons/FastFood.png",
-        "menu":[
-            {"name":"Pizza","price":"0"},
-            {"name":"French Fries","price":"0"},
-            {"name":"Hamburger","price":"0"},
-            {"name":"Beef Steak","price":"0"},
-            {"name":"Hot Dog","price":"0"}
-        ]
-    },
+  {
+    "type": "Fastfood",
+    "iconURL": "FoodTypeIcons/FastFood.png",
+    "menu": [
+      { "name": "Pizza", "price": "0" },
+      { "name": "French Fries", "price": "0" },
+      { "name": "Hamburger", "price": "0" },
+      { "name": "Beef Steak", "price": "0" },
+      { "name": "Hot Dog", "price": "0" }
+    ]
+  },
 
-    {
-        "type":"Healthy",
-        "iconURL":"src/assets/FoodTypeIcons/HealthyFood.png",
-        "menu":[
-            {"name":"Salad","price":"0"},
-            {"name":"Bake Rice and Cereal","price":"0"},
-            {"name":"Salad Roll","price":"0"}
-        ]
-    },
+  {
+    "type": "Healthy",
+    "iconURL": "FoodTypeIcons/HealthyFood.png",
+    "menu": [
+      { "name": "Salad", "price": "0" },
+      { "name": "Bake Rice and Cereal", "price": "0" },
+      { "name": "Salad Roll", "price": "0" }
+    ]
+  },
 
-    {
-        "type":"Noodles",
-        "iconURL":"src/assets/FoodTypeIcons/Noodles.png",
-        "menu":[
-            {"name":"Yentafo","price":"0"},
-            {"name":"Topped","price":"0"},
-            {"name":"Spagetthi","price":"0"},
-            {"name":"Green noodles","price":"0"}
-        ]
-    },
+  {
+    "type": "Noodles",
+    "iconURL": "FoodTypeIcons/Noodles.png",
+    "menu": [
+      { "name": "Yentafo", "price": "0" },
+      { "name": "Topped", "price": "0" },
+      { "name": "Spagetthi", "price": "0" },
+      { "name": "Green noodles", "price": "0" }
+    ]
+  },
 
-    {
-        "type":"Curry",
-        "iconURL":"src/assets/FoodTypeIcons/Curry.png",
-        "menu":[
-            {"name":"Tom Yum Kung","price":"0"},
-            {"name":"Green Curry","price":"0"},
-            {"name":"Fish Organ Soup","price":"0"},
-            {"name":"Clear Soup","price":"0"}
-        ]
-    },
+  {
+    "type": "Curry",
+    "iconURL": "FoodTypeIcons/Curry.png",
+    "menu": [
+      { "name": "Tom Yum Kung", "price": "0" },
+      { "name": "Green Curry", "price": "0" },
+      { "name": "Fish Organ Soup", "price": "0" },
+      { "name": "Clear Soup", "price": "0" }
+    ]
+  },
 
-    {
-        "type":"Isaan",
-        "iconURL":"src/assets/FoodTypeIcons/IsaanFood.png",
-        "menu":[
-            {"name":"Papaya Salad","price":"0"},
-            {"name":"Grilled Pork Neck", "price":"0"},
-            {"name":"Soiju", "price":"0"},
-            {"name":"Minced Pork Salad", "price":"0"}
-        ]
-    }
+  {
+    "type": "Isaan",
+    "iconURL": "FoodTypeIcons/IsaanFood.png",
+    "menu": [
+      { "name": "Papaya Salad", "price": "0" },
+      { "name": "Grilled Pork Neck", "price": "0" },
+      { "name": "Soiju", "price": "0" },
+      { "name": "Minced Pork Salad", "price": "0" }
+    ]
+  }
 ]
