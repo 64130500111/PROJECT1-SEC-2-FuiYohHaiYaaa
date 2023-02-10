@@ -60,13 +60,6 @@ const isActive = (input) => {
               <div class="mt-[50px] ml-[50px]">
                 <p class="font-['Baloo'] text-[48px]">Welcome to Hello</p>
               </div>
-              <!-- <div
-                class="w-[61px] h-[57px] bg-gray-200 rounded-[20px] shadow-lg mt-[55px] flex flex-row"
-              >
-                <button class="ml-[15px] mt-[12px]">
-                  <MaterialSymbolsSearchRounded />
-                </button>
-              </div> -->
             </div>
             <!-- selection bottom -->
             <ul class="flex flex-row ml-[50px] gap-3 h-[50%]">
