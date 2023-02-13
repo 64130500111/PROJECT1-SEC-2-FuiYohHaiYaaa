@@ -3,7 +3,7 @@ import { ref, computed } from "vue";
 import IcOutlineHome from "./assets/icons/IcOutlineHome.vue";
 import MaterialSymbolsSearchRounded from "./assets/icons/MaterialSymbolsSearchRounded.vue";
 import CarbonInformation from "./assets/icons/CarbonInformation.vue";
-import MdiCartVariant from './assets/icons/MdiCartVariant.vue';
+import MdiCartVariant from "./assets/icons/MdiCartVariant.vue";
 import category from "./data/items.json";
 
 const typeNum = ref(0);
@@ -12,9 +12,9 @@ let menuArr = category[0].menu; //default
 
 const search = ref(false);
 
-const userKeywords = ref('');
+const userKeywords = ref("");
 
-let filterFood = category[0].menu;
+let filterFood = category[0].menu; //default
 
 const isActive = (index = 0) => {
   // filter type
@@ -24,7 +24,7 @@ const isActive = (index = 0) => {
   menuArr = category[index].menu.sort((a, b) => a.name.localeCompare(b.name));
   // console.log(menuArr)
 
-  // compute user keywords
+  // array with compute function
   filterFood = computed(() => {
     return menuArr.filter((arr) =>
       arr.name.toLowerCase().includes(userKeywords.value.toLowerCase())
@@ -34,7 +34,9 @@ const isActive = (index = 0) => {
 
 const cartItem = ref([]);
 
-
+const increase = () => {
+  
+}
 </script>
 
 <template>
@@ -88,11 +90,12 @@ const cartItem = ref([]);
               </div>
               <div class="w-full flex justify-end">
                 <div class="w-[45px] h-[45px] flex flex-row mt-3 bg-gray-200 rounded-xl shadow-lg">
-                  <button @click="search = !search" class="mt-[5px] ml-[10px]" >
-                    <MaterialSymbolsSearchRounded/>
+                  <button @click="search = !search" class="mt-[5px] ml-[10px]">
+                    <MaterialSymbolsSearchRounded />
                   </button>
                 </div>
-                <input @input="isActive(typeNum)" v-show="search" v-model.trim="userKeywords" type="text" placeholder="Type keyword..."
+                <input @input="isActive(typeNum)" v-show="search" v-model.trim="userKeywords" type="text"
+                  placeholder="Type keyword..."
                   class="w-[10em] h-8 rounded-md ml-3 mt-5 p-2 bg-white border border-gray-500" />
               </div>
 
@@ -103,7 +106,7 @@ const cartItem = ref([]);
             <!-- Grid -->
             <div class="grid grid-cols-3 justify-items-center gap-y-4 overflow-scroll">
               <div v-for="(menu, index) in filterFood" :key="index"
-                class="w-[180px] h-[237px] rounded-[31px] bg-gray-200 shadow-lg flex flex-col">
+                class="w-[180px] h-[237px] rounded-[31px] bg-white shadow-lg flex flex-col">
                 <div class="flex justify-center">
                   <img :src="menu.picURL" class="w-[120px] h-[120px] rounded-[30px]" />
                 </div>
@@ -129,14 +132,13 @@ const cartItem = ref([]);
                       </div>
                     </div>
                   </div>
-
                 </div>
                 <div class="flex flex-row">
-                  <div class="w-full flex justify-center mt-8">
-                    <p class="font-['Baloo']">{{ menu.price }} ฿</p>
+                  <div class="w-full flex justify-center mt-7">
+                    <p class="font-['Baloo'] text-lg" >{{ menu.price }}฿</p>
                   </div>
                   <div class="w-full">
-                    <input type="checkbox" :id="menu.name" :value="menu.name" v-model="cartItem"
+                    <input type="checkbox" :id="menu" :value="menu" v-model="cartItem"
                       class="checkbox checkbox-success checkbox-md ml-8 mt-7" />
                   </div>
                 </div>
@@ -144,7 +146,33 @@ const cartItem = ref([]);
             </div>
           </div>
         </div>
-        <div id="article" class="w-[35%] h-[100%]"></div>
+        <div id="article" class="w-[35%] h-[100%] flex flex-col">
+          <div class="flex justify-end mr-10 mt-[50px]">
+            <h3 class="font-['Baloo'] text-[48px]">Your Cart</h3>
+          </div>
+          <div class="w-full ml-[20px] font-['?????']">
+            <table class="w-full">
+              <thead>
+                <tr class="text-left">
+                  <th class="w-[45%]">Menu</th>
+                  <th>Price</th>
+                  <th class="pl-[15px]">Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(item, index) in cartItem ">
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.price }}฿</td>
+                  <td class="pl-[15px]"> 
+                    <button class="btn btn-xs btn-circle btn-ghost btn-active">-</button> 
+                    {{ item.count }} 
+                    <button class="btn btn-xs btn-circle btn-ghost btn-active">+</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>
