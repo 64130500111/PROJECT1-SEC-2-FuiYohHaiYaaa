@@ -34,9 +34,10 @@ const isActive = (index = 0) => {
 
 const cartItem = ref([]);
 
-const increase = () => {
-  
-}
+const totalAmount = computed(() => {
+  return cartItem.value.reduce((total, currentValue) => total + currentValue.price, 0)
+})
+
 </script>
 
 <template>
@@ -147,7 +148,7 @@ const increase = () => {
           </div>
         </div>
         <div id="article" class="w-[35%] h-[100%] flex flex-col">
-          <div class="flex justify-end mr-10 mt-[50px]">
+          <div class="flex justify-center mt-[50px]">
             <h3 class="font-['Baloo'] text-[48px]">Your Cart</h3>
           </div>
           <div class="w-full ml-[20px] font-['?????']">
@@ -155,8 +156,8 @@ const increase = () => {
               <thead>
                 <tr class="text-left">
                   <th class="w-[45%]">Menu</th>
-                  <th>Price</th>
-                  <th class="pl-[15px]">Quantity</th>
+                  <th class="w-[20%]">Price</th>
+                  <th class="w-[35%] pl-[15px]">Quantity</th>
                 </tr>
               </thead>
               <tbody>
@@ -168,6 +169,10 @@ const increase = () => {
                     1 
                     <button class="btn btn-xs btn-circle btn-ghost btn-active">+</button>
                   </td>
+                </tr>
+                <tr class="text-left">
+                  <th>Total Amount:</th>
+                  <th>{{ totalAmount }} Baht</th>
                 </tr>
               </tbody>
             </table>
@@ -183,8 +188,6 @@ const increase = () => {
 @import url(https://fonts.googleapis.com/css2?family=?????:wght@400);
 
 #main {
-  /* background-image: url(./assets/MainBG.png); */
-
   background: conic-gradient(from 260.41deg at 69.86% 79.2%,
       #ffffff 0deg,
       #f76e21 120deg,
@@ -201,29 +204,10 @@ const increase = () => {
       rgba(253, 235, 221, 0.5) 360deg);
 }
 
-#menu {
-  /* border-color: red; */
-}
-
-#order {
-  /* border-color: purple; */
-}
-
-#profile {}
-
 #profilepic {
   width: 50px;
   height: 50px;
   margin: auto;
 }
 
-#home {}
-
-#selection {}
-
-#article {}
-
-#type {}
-
-#item {}
 </style>
