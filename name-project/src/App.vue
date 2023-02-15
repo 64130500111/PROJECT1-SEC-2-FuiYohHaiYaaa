@@ -1,34 +1,42 @@
 <script setup>
-import { ref, computed } from "vue"
-import IcOutlineHome from "./assets/icons/IcOutlineHome.vue"
-import MaterialSymbolsSearchRounded from "./assets/icons/MaterialSymbolsSearchRounded.vue"
-import IcTwotoneCheck from './assets/icons/IcTwotoneCheck.vue'
-import IcRoundPlus from './assets/icons/IcRoundPlus.vue'
-import category from "./data/items.json"
+import { ref, computed } from "vue";
+import IcOutlineHome from "./assets/icons/IcOutlineHome.vue";
+import MaterialSymbolsSearchRounded from "./assets/icons/MaterialSymbolsSearchRounded.vue";
+import CarbonInformation from "./assets/icons/CarbonInformation.vue";
+import MdiCartVariant from "./assets/icons/MdiCartVariant.vue";
+import category from "./data/items.json";
 
-const refNum = ref(0);
+const typeNum = ref(0);
 
-let menuArr = category[0].menu //default
+let menuArr = category[0].menu; //default
 
 const search = ref(false);
 
-const userKeywords = ref('')
+const userKeywords = ref("");
 
-let filterFood = category[0].menu
+let filterFood = category[0].menu; //default
 
-const isActive = (input) => {
+const isActive = (index = 0) => {
   // filter type
-  refNum.value = input;
+  typeNum.value = index;
 
   // get array of food
-  menuArr = category[input].menu.sort((a, b) => a.name.localeCompare(b.name))
+  menuArr = category[index].menu.sort((a, b) => a.name.localeCompare(b.name));
   // console.log(menuArr)
 
-  // compute user keywords
-  filterFood = computed(() => { return menuArr.filter((arr) => arr.name.toLowerCase().includes(userKeywords.value.toLowerCase())) })
-
+  // array with compute function
+  filterFood = computed(() => {
+    return menuArr.filter((arr) =>
+      arr.name.toLowerCase().includes(userKeywords.value.toLowerCase())
+    );
+  });
 };
 
+const cartItem = ref([]);
+
+const increase = () => {
+  
+}
 </script>
 
 <template>
@@ -65,11 +73,10 @@ const isActive = (input) => {
             <ul class="flex flex-row ml-[50px] gap-3 h-[50%]">
               <li v-for="({ type, iconURL }, index) in category" :key="index"
                 class="target w-[89px] h-[130px] rounded-[59px] bg-white text-black shadow-xl font-['?????'] cursor-pointer"
-                @click="isActive(index)" 
-                :class="refNum === index ? 'bg-black' : 'bg-white'">
+                @click="isActive(index)" :class="typeNum === index ? 'bg-black' : 'bg-white'">
                 <div class="text-center mt-[20px]">
                   <img :src="iconURL" class="ml-[10px]" />
-                  <p :class="refNum === index ? 'text-white' : 'text-black'">
+                  <p :class="typeNum === index ? 'text-white' : 'text-black'">
                     {{ type }}
                   </p>
                 </div>
@@ -81,47 +88,91 @@ const isActive = (input) => {
               <div class="w-full flex justify-center">
                 <p class="font-['Baloo'] text-[48px]">Menus</p>
               </div>
-
               <div class="w-full flex justify-end">
                 <div class="w-[45px] h-[45px] flex flex-row mt-3 bg-gray-200 rounded-xl shadow-lg">
                   <button @click="search = !search" class="mt-[5px] ml-[10px]">
                     <MaterialSymbolsSearchRounded />
                   </button>
                 </div>
-                <input v-show="search" v-model.trim="userKeywords" type="text" placeholder="Type keyword..."
-                  class="w-[10em] h-8 rounded-md ml-3 mt-5 p-2 bg-white border border-gray-500">
+                <input @input="isActive(typeNum)" v-show="search" v-model.trim="userKeywords" type="text"
+                  placeholder="Type keyword..."
+                  class="w-[10em] h-8 rounded-md ml-3 mt-5 p-2 bg-white border border-gray-500" />
               </div>
 
               <!-- <div class="w-full flex justify-end">
-                <div>Icon</div>
+                <div>Icon see all</div>
               </div> -->
             </div>
+            <!-- Grid -->
             <div class="grid grid-cols-3 justify-items-center gap-y-4 overflow-scroll">
-                <div v-for="(menu, index) in filterFood" :key="index" class="w-[180px] h-[237px] rounded-[31px] bg-gray-200 shadow-lg flex flex-col">
-                  <div class="flex justify-center">
-                    <img :src="menu.picURL" class="w-[120px] h-[120px] rounded-[30px]">
-                  </div>
-                  <p class="font-['Baloo'] text-lg text-center mt-2">{{ menu.name }}</p>
-                  <div class="flex flex-row">
-                  <div class="w-full flex justify-center mt-8">
-                      <p class="font-['Baloo']">{{ menu.price }} ฿ </p>
-                  </div>
-                  <div class="w-full">
-                     <button @click="" class="w-[50px] h-[50px] rounded-full bg-red-200 mt-3 ml-5 shadow-lg">
-                      <div v-show="true" class="pl-[9px]">
-                        <IcRoundPlus />
+              <div v-for="(menu, index) in filterFood" :key="index"
+                class="w-[180px] h-[237px] rounded-[31px] bg-white shadow-lg flex flex-col">
+                <div class="flex justify-center">
+                  <img :src="menu.picURL" class="w-[120px] h-[120px] rounded-[30px]" />
+                </div>
+                <div class="flex flex-row justify-center">
+                  <p class="font-['Baloo'] text-[0.9em] text-center mt-3">
+                    {{ menu.name }}
+                  </p>
+                  <!-- information modal -->
+                  <a :href="`#${index}`" class="mt-[13px] ml-2">
+                    <CarbonInformation />
+                  </a>
+                  <div class="modal" :id="index">
+                    <div class="modal-box">
+                      <h3 class="font-bold text-lg">
+                        Congratulations random Internet user!
+                      </h3>
+                      <p class="py-4">
+                        You've been selected for a chance to get one year of
+                        subscription to use Wikipedia for free!
+                      </p>
+                      <div class="modal-action">
+                        <a href="#" class="btn">Yay!</a>
                       </div>
-                      <div v-show="false" class="pl-[9px]">
-                        <IcTwotoneCheck/>
-                      </div>
-                     </button>
+                    </div>
                   </div>
                 </div>
-                </div> 
+                <div class="flex flex-row">
+                  <div class="w-full flex justify-center mt-7">
+                    <p class="font-['Baloo'] text-lg" >{{ menu.price }}฿</p>
+                  </div>
+                  <div class="w-full">
+                    <input type="checkbox" :id="menu" :value="menu" v-model="cartItem"
+                      class="checkbox checkbox-success checkbox-md ml-8 mt-7" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div id="article" class="w-[35%] h-[100%]"></div>
+        <div id="article" class="w-[35%] h-[100%] flex flex-col">
+          <div class="flex justify-end mr-10 mt-[50px]">
+            <h3 class="font-['Baloo'] text-[48px]">Your Cart</h3>
+          </div>
+          <div class="w-full ml-[20px] font-['?????']">
+            <table class="w-full">
+              <thead>
+                <tr class="text-left">
+                  <th class="w-[45%]">Menu</th>
+                  <th>Price</th>
+                  <th class="pl-[15px]">Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(item, index) in cartItem ">
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.price }}฿</td>
+                  <td class="pl-[15px]"> 
+                    <button class="btn btn-xs btn-circle btn-ghost btn-active">-</button> 
+                    1 
+                    <button class="btn btn-xs btn-circle btn-ghost btn-active">+</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>
