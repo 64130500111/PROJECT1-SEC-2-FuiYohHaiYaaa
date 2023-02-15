@@ -3,7 +3,7 @@
     "type": "All",
     "iconURL": "FoodTypeIcons/Allitem.png",
     "menu": [
-      { "name": "Pizza", "price": "359", "picURL":"FoodPic/Pizza.png", "count": "0"},
+      { "name": "Pizza", "price": "359", "picURL":"FoodPic/Pizza.png"},
       { "name": "French Fries", "price": "68", "picURL":"FoodPic/FrenchFries.png" },
       { "name": "Hamburger", "price": "149", "picURL":"FoodPic/Hamburger.png" },
       { "name": "Beef Steak", "price": "209", "picURL":"FoodPic/BeefSteak.png" },
@@ -34,8 +34,7 @@
       { "name": "French Fries", "price": "68", "picURL":"FoodPic/FrenchFries.png" },
       { "name": "Hamburger", "price": "149", "picURL":"FoodPic/Hamburger.png" },
       { "name": "Beef Steak", "price": "209", "picURL":"FoodPic/BeefSteak.png" },
-      { "name": "Hot Dog", "price": "35", "picURL":"FoodPic/HotDog.png" },
-      { "name": "Salad", "price": "89", "picURL":"FoodPic/Salad.png" }
+      { "name": "Hot Dog", "price": "35", "picURL":"FoodPic/HotDog.png" }
     ]
   },
 

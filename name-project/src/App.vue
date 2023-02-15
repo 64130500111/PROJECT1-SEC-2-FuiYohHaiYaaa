@@ -165,7 +165,7 @@ const increase = () => {
                   <td>{{ item.price }}฿</td>
                   <td class="pl-[15px]"> 
                     <button class="btn btn-xs btn-circle btn-ghost btn-active">-</button> 
-                    {{ item.count }} 
+                    1 
                     <button class="btn btn-xs btn-circle btn-ghost btn-active">+</button>
                   </td>
                 </tr>
