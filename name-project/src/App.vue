@@ -66,7 +66,7 @@ const totalAmount = computed(() => {
             <div class="flex flex-row justify-between h-[50%]">
               <!-- selection top -->
               <div class="mt-[50px] ml-[50px]">
-                <p class="font-['Baloo'] text-[48px]">Welcome to Hello</p>
+                <p class="font-['Baloo'] text-[48px]">Welcome to Eatland</p>
               </div>
             </div>
             <!-- selection bottom -->
