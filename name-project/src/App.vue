@@ -3,7 +3,6 @@ import { ref, computed } from "vue";
 import IcOutlineHome from "./assets/icons/IcOutlineHome.vue";
 import MaterialSymbolsSearchRounded from "./assets/icons/MaterialSymbolsSearchRounded.vue";
 import CarbonInformation from "./assets/icons/CarbonInformation.vue";
-import MdiCartVariant from "./assets/icons/MdiCartVariant.vue";
 import category from "./data/items.json";
 
 const typeNum = ref(0);
@@ -46,7 +45,7 @@ const totalAmount = computed(() => {
       <!-- menu -->
       <div id="menu" class="flex flex-col w-[20%] h-[100%]">
         <div id="profile" class="flex flex-col mt-[80px]">
-          <img id="profilepic" src="./assets/Dr.rash.jpg" alt="profilePic" />
+          <img id="profilepic" src="./assets/Dr.rash.jpg" alt="profilePic"  class="rounded-lg"/>
           <h1 id="name" class="text-center text-xl font-['Baloo'] mt-3">
             Dr. Marcus Rashford
           </h1>
