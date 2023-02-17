@@ -5,37 +5,6 @@ import MaterialSymbolsSearchRounded from "./assets/icons/MaterialSymbolsSearchRo
 import CarbonInformation from "./assets/icons/CarbonInformation.vue";
 import category from "./data/items.json";
 
-const typeNum = ref(0);
-
-let menuArr = category[0].menu; //default
-
-const search = ref(false);
-
-const userKeywords = ref("");
-
-let filterFood = category[0].menu; //default
-
-const isActive = (index = 0) => {
-  // filter type
-  typeNum.value = index;
-
-  // get array of food
-  menuArr = category[index].menu.sort((a, b) => a.name.localeCompare(b.name));
-
-  // array with compute function
-  filterFood = computed(() => {
-    return menuArr.filter((arr) =>
-      arr.name.toLowerCase().includes(userKeywords.value.toLowerCase())
-    );
-  });
-};
-
-const cartItem = ref([]);
-
-const totalAmount = computed(() => {
-  return cartItem.value.reduce((total, currentValue) => total + currentValue.price, 0)
-})
-
 </script>
 
 <template>
@@ -70,13 +39,13 @@ const totalAmount = computed(() => {
             </div>
             <!-- selection bottom -->
             <ul class="flex flex-row ml-[50px] gap-3 h-[50%]">
-              <li v-for="({ type, iconURL }, index) in category" :key="index"
+              <li 
                 class="target w-[89px] h-[130px] rounded-[59px] bg-white text-black shadow-xl font-['?????'] cursor-pointer"
-                @click="isActive(index)" :class="typeNum === index ? 'bg-black' : 'bg-white'">
+                >
                 <div class="text-center mt-[20px]">
                   <img :src="iconURL" class="ml-[10px]" />
-                  <p :class="typeNum === index ? 'text-white' : 'text-black'">
-                    {{ type }}
+                  <p>
+
                   </p>
                 </div>
               </li>
@@ -89,12 +58,11 @@ const totalAmount = computed(() => {
               </div>
               <div class="w-full flex justify-end">
                 <div class="w-[45px] h-[45px] flex flex-row mt-3 bg-gray-200 rounded-xl shadow-lg">
-                  <button @click="search = !search" class="mt-[5px] ml-[10px]">
-                    <MaterialSymbolsSearchRounded />
+                  <button class="mt-[5px] ml-[10px]">
+                    <MaterialSymbolsSearchRounded/>
                   </button>
                 </div>
-                <input @input="isActive(typeNum)" v-show="search" v-model.trim="userKeywords" type="text"
-                  placeholder="Type keyword..."
+                <input type="text" 
                   class="w-[10em] h-8 rounded-md ml-3 mt-5 p-2 bg-white border border-gray-500" />
               </div>
 
@@ -104,14 +72,14 @@ const totalAmount = computed(() => {
             </div>
             <!-- Grid -->
             <div class="grid grid-cols-3 justify-items-center gap-y-4 overflow-scroll">
-              <div v-for="(menu, index) in filterFood" :key="index"
+              <div 
                 class="w-[180px] h-[237px] rounded-[31px] bg-white shadow-lg flex flex-col">
                 <div class="flex justify-center">
-                  <img :src="menu.picURL" class="w-[120px] h-[120px] rounded-[30px]" />
+                  <img class="w-[120px] h-[120px] rounded-[30px]" />
                 </div>
                 <div class="flex flex-row justify-center">
                   <p class="font-['Baloo'] text-[0.9em] text-center mt-3">
-                    {{ menu.name }}
+
                   </p>
                   <!-- information modal -->
                   <a :href="`#${index}`" class="mt-[13px] ml-2">
@@ -134,10 +102,10 @@ const totalAmount = computed(() => {
                 </div>
                 <div class="flex flex-row">
                   <div class="w-full flex justify-center mt-7">
-                    <p class="font-['Baloo'] text-lg" >{{ menu.price }}฿</p>
+                    <p class="font-['Baloo'] text-lg" > ฿</p>
                   </div>
                   <div class="w-full">
-                    <input type="checkbox" :id="menu" :value="menu" v-model="cartItem"
+                    <input type="checkbox" 
                       class="checkbox checkbox-success checkbox-md ml-8 mt-7" />
                   </div>
                 </div>
@@ -159,9 +127,9 @@ const totalAmount = computed(() => {
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(item, index) in cartItem ">
-                  <td>{{ item.name }}</td>
-                  <td>{{ item.price }}฿</td>
+                <tr >
+                  <td> </td>
+                  <td> ฿</td>
                   <td class="pl-[15px]"> 
                     <button class="btn btn-xs btn-circle btn-ghost btn-active">-</button> 
                     1 
@@ -170,7 +138,7 @@ const totalAmount = computed(() => {
                 </tr>
                 <tr class="text-left">
                   <th>Total Amount:</th>
-                  <th>{{ totalAmount }} Baht</th>
+                  <th> Baht</th>
                 </tr>
               </tbody>
             </table>
