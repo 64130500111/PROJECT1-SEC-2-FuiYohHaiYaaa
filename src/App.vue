@@ -5,36 +5,6 @@ import MaterialSymbolsSearchRounded from "./assets/icons/MaterialSymbolsSearchRo
 import CarbonInformation from "./assets/icons/CarbonInformation.vue";
 import category from "./data/items.json";
 
-const typeNum = ref(0);
-
-let menuArr = category[0].menu; //default
-
-const search = ref(false);
-
-const userKeywords = ref("");
-
-let filterFood = category[0].menu; //default
-
-const isActive = (index = 0) => {
-  // filter type
-  typeNum.value = index;
-
-  // get array of food
-  menuArr = category[index].menu.sort((a, b) => a.name.localeCompare(b.name));
-
-  // array with compute function
-  filterFood = computed(() => {
-    return menuArr.filter((arr) =>
-      arr.name.toLowerCase().includes(userKeywords.value.toLowerCase())
-    );
-  });
-};
-
-const cartItem = ref([]);
-
-const totalAmount = computed(() => {
-  return cartItem.value.reduce((total, currentValue) => total + currentValue.price, 0)
-})
 
 </script>
 
