@@ -21,7 +21,6 @@ const isActive = (index = 0) => {
 
   // get array of food
   menuArr = category[index].menu.sort((a, b) => a.name.localeCompare(b.name));
-  // console.log(menuArr)
 
   // array with compute function
   filterFood = computed(() => {
