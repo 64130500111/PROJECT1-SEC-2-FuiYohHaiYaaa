@@ -5,6 +5,10 @@ import MaterialSymbolsSearchRounded from "./assets/icons/MaterialSymbolsSearchRo
 import CarbonInformation from "./assets/icons/CarbonInformation.vue";
 import category from "./data/items.json";
 
+const refNum = ref(0)
+function isActive(index){
+  refNum.value = index
+}
 </script>
 
 <template>
@@ -39,13 +43,13 @@ import category from "./data/items.json";
             </div>
             <!-- selection bottom -->
             <ul class="flex flex-row ml-[50px] gap-3 h-[50%]">
-              <li 
+              <li v-for="({type , iconURL} , index) in category" :key="index"
                 class="target w-[89px] h-[130px] rounded-[59px] bg-white text-black shadow-xl font-['?????'] cursor-pointer"
-                >
+                @click=" isActive(index)" :class="refNum === index ? 'bg-black text-white' : 'bg-white text-black'">
                 <div class="text-center mt-[20px]">
                   <img :src="iconURL" class="ml-[10px]" />
                   <p>
-
+                    {{ type }}
                   </p>
                 </div>
               </li>
