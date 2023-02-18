@@ -5,36 +5,21 @@ import MaterialSymbolsSearchRounded from "./assets/icons/MaterialSymbolsSearchRo
 import CarbonInformation from "./assets/icons/CarbonInformation.vue";
 import category from "./data/items.json";
 
-const typeNum = ref(0);
 
-let menuArr = category[0].menu; //default
 
-const search = ref(false);
+const refNum = ref(0)
 
-const userKeywords = ref("");
+let menuArray = category[0].menu
 
-let filterFood = category[0].menu; //default
+const isSelect=(index = 0) =>{
+  refNum.value = index
+  console.log(refNum.value)
 
-const isActive = (index = 0) => {
-  // filter type
-  typeNum.value = index;
+  menuArray = category[index].menu
+}
+const search = ref('')
+const yourText = ref('')
 
-  // get array of food
-  menuArr = category[index].menu.sort((a, b) => a.name.localeCompare(b.name));
-
-  // array with compute function
-  filterFood = computed(() => {
-    return menuArr.filter((arr) =>
-      arr.name.toLowerCase().includes(userKeywords.value.toLowerCase())
-    );
-  });
-};
-
-const cartItem = ref([]);
-
-const totalAmount = computed(() => {
-  return cartItem.value.reduce((total, currentValue) => total + currentValue.price, 0)
-})
 
 </script>
 
@@ -70,12 +55,13 @@ const totalAmount = computed(() => {
             </div>
             <!-- selection bottom -->
             <ul class="flex flex-row ml-[50px] gap-3 h-[50%]">
-              <li
-                class="target w-[89px] h-[130px] rounded-[59px] bg-white text-black shadow-xl font-['?????'] cursor-pointer">
+              <li v-for="{type , iconURL} ,index in category" :key="index"
+                class="target w-[89px] h-[130px] rounded-[59px] bg-white text-black shadow-xl font-['?????'] cursor-pointer"
+                @click="isSelect(index)" v-bind:class = "refNum === index ? 'bg-black':'bg-white'">
                 <div class="text-center mt-[20px]">
-                  <img class="ml-[10px]" />
-                  <p>
-                    Type
+                  <img :src="iconURL" class="ml-[10px]" />
+                  <p v-bind:class="refNum === index?'text-white':'text-black'">
+                    {{ type }}
                   </p>
                 </div>
               </li>
@@ -84,16 +70,18 @@ const totalAmount = computed(() => {
           <div id="item" class="w-[100%] h-[50%] flex flex-col">
             <div class="flex flex-row h-[20%]">
               <div class="w-full flex justify-center">
-                <p class="font-['Baloo'] text-[48px]">Menus</p>
+                <p class="font-['Baloo'] text-[48px]">Menus {{ yourText }}</p>
               </div>
               <div class="w-full flex justify-end">
                 <div class="w-[45px] h-[45px] flex flex-row mt-3 bg-gray-200 rounded-xl shadow-lg">
-                  <button class="mt-[5px] ml-[10px]">
+                  <button @click="search = !search" class="mt-[5px] ml-[10px]">
                     <MaterialSymbolsSearchRounded />
                   </button>
                 </div>
                 <input type="text" placeholder="Type keyword..."
-                  class="w-[10em] h-8 rounded-md ml-3 mt-5 p-2 bg-white border border-gray-500" />
+                  class="w-[10em] h-8 rounded-md ml-3 mt-5 p-2 bg-white border border-gray-500" 
+                  v-show="search"
+                  v-model="yourText"/>
               </div>
 
               <!-- <div class="w-full flex justify-end">
@@ -102,14 +90,14 @@ const totalAmount = computed(() => {
             </div>
             <!-- Grid -->
             <div class="grid grid-cols-3 justify-items-center gap-y-4 overflow-scroll">
-              <div
+              <div v-for="{name,price,picURL},index in menuArray " 
                 class="w-[180px] h-[237px] rounded-[31px] bg-white shadow-lg flex flex-col">
                 <div class="flex justify-center">
-                  <img  class="w-[120px] h-[120px] rounded-[30px]" />
+                  <img :src="picURL" class="w-[120px] h-[120px] rounded-[30px]" />
                 </div>
                 <div class="flex flex-row justify-center">
                   <p class="font-['Baloo'] text-[0.9em] text-center mt-3">
-                    name
+                    {{ name }}
                   </p>
                   <!-- information modal -->
                   <!-- <a :href="`#${index}`" class="mt-[13px] ml-2">
@@ -132,7 +120,7 @@ const totalAmount = computed(() => {
                 </div>
                 <div class="flex flex-row">
                   <div class="w-full flex justify-center mt-7">
-                    <p class="font-['Baloo'] text-lg">price฿</p>
+                    <p class="font-['Baloo'] text-lg">{{ price }}</p>
                   </div>
                   <div class="w-full">
                     <input type="checkbox" 
@@ -182,7 +170,6 @@ const totalAmount = computed(() => {
 <style scoped>
 @import url(https://fonts.googleapis.com/css2?family=Baloo:wght@400);
 @import url(https://fonts.googleapis.com/css2?family=?????:wght@400);
-
 #main {
   background: conic-gradient(from 260.41deg at 69.86% 79.2%,
       #ffffff 0deg,
@@ -190,7 +177,6 @@ const totalAmount = computed(() => {
       #f76e21 240deg,
       #ffffff 360deg);
 }
-
 #secondary {
   background: conic-gradient(from 270deg at 102.36% 100%,
       rgba(255, 255, 255, 0.5) 0deg,
@@ -199,7 +185,6 @@ const totalAmount = computed(() => {
       rgba(255, 251, 250, 0.5) 270deg,
       rgba(253, 235, 221, 0.5) 360deg);
 }
-
 #profilepic {
   width: 50px;
   height: 50px;
