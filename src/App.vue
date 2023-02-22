@@ -93,7 +93,7 @@ const totalAmount = computed(() => {
                     <MaterialSymbolsSearchRounded />
                   </button>
                 </div>
-                <input @input="isActive(typeNum)" v-show="search" v-model.trim="userKeywords" type="text"
+                <input v-show="search" v-model.trim="userKeywords" type="text"
                   placeholder="Type keyword..."
                   class="w-[10em] h-8 rounded-md ml-3 mt-5 p-2 bg-white border border-gray-500" />
               </div>
