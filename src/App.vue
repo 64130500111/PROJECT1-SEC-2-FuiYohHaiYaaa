@@ -6,21 +6,41 @@ import CarbonInformation from "./assets/icons/CarbonInformation.vue";
 import category from "./data/items.json";
 
 
+const typeNum = ref(0)
 
-const refNum = ref(0)
+let menuArr = category[0].menu
 
-let menuArray = category[0].menu
+const search = ref(false)
 
-const isSelect=(index = 0) =>{
-  refNum.value = index
-  console.log(refNum.value)
-
-  menuArray = category[index].menu
-}
-const search = ref('')
 const yourText = ref('')
 
+let fillterfood =category[0].menu
 
+const isSelect=(index = 0)=>{
+   typeNum.value = index
+   console.log(typeNum.value)
+
+  menuArr = category[index].menu
+
+  fillterfood = computed(()=>{
+    return menuArr.filter((item) => 
+    item.name.toLowerCase().includes(yourText.value.toLowerCase()));
+
+  });
+ 
+
+ 
+
+
+
+};
+
+const cart = ref([]);
+console.log(cart.value)
+
+const total = computed(()=>{
+  return cart.value.reduce((total,currentValue) => total + currentValue.price,0)
+})
 </script>
 
 <template>
@@ -55,12 +75,14 @@ const yourText = ref('')
             </div>
             <!-- selection bottom -->
             <ul class="flex flex-row ml-[50px] gap-3 h-[50%]">
-              <li v-for="{type , iconURL} ,index in category" :key="index"
-                class="target w-[89px] h-[130px] rounded-[59px] bg-white text-black shadow-xl font-['?????'] cursor-pointer"
-                @click="isSelect(index)" v-bind:class = "refNum === index ? 'bg-black':'bg-white'">
-                <div class="text-center mt-[20px]">
+              <li v-for="{type,iconURL},index in category" :key="index"
+                
+              class="target w-[89px] h-[130px] rounded-[59px] bg-white text-black shadow-xl font-['?????'] cursor-pointer"
+              @click="isSelect(index)" :class="typeNum === index ? 'bg-black' : 'bg-white'" >
+              
+              <div class="text-center mt-[20px]">
                   <img :src="iconURL" class="ml-[10px]" />
-                  <p v-bind:class="refNum === index?'text-white':'text-black'">
+                  <p :class="typeNum === index ? 'text-white':'text-black'">
                     {{ type }}
                   </p>
                 </div>
@@ -70,7 +92,7 @@ const yourText = ref('')
           <div id="item" class="w-[100%] h-[50%] flex flex-col">
             <div class="flex flex-row h-[20%]">
               <div class="w-full flex justify-center">
-                <p class="font-['Baloo'] text-[48px]">Menus {{ yourText }}</p>
+                <p class="font-['Baloo'] text-[48px]">Menus</p>
               </div>
               <div class="w-full flex justify-end">
                 <div class="w-[45px] h-[45px] flex flex-row mt-3 bg-gray-200 rounded-xl shadow-lg">
@@ -78,10 +100,10 @@ const yourText = ref('')
                     <MaterialSymbolsSearchRounded />
                   </button>
                 </div>
-                <input type="text" placeholder="Type keyword..."
-                  class="w-[10em] h-8 rounded-md ml-3 mt-5 p-2 bg-white border border-gray-500" 
-                  v-show="search"
-                  v-model="yourText"/>
+                <input type="text" placeholder="Type keyword..."  v-show="search" v-model.trim = "yourText"
+                  class="w-[10em] h-8 rounded-md ml-3 mt-5 p-2 bg-white border border-gray-500"
+                 
+                   />
               </div>
 
               <!-- <div class="w-full flex justify-end">
@@ -90,7 +112,7 @@ const yourText = ref('')
             </div>
             <!-- Grid -->
             <div class="grid grid-cols-3 justify-items-center gap-y-4 overflow-scroll">
-              <div v-for="{name,price,picURL},index in menuArray " 
+              <div v-for="{name,price,picURL},index in fillterfood" :key="index"
                 class="w-[180px] h-[237px] rounded-[31px] bg-white shadow-lg flex flex-col">
                 <div class="flex justify-center">
                   <img :src="picURL" class="w-[120px] h-[120px] rounded-[30px]" />
@@ -120,12 +142,13 @@ const yourText = ref('')
                 </div>
                 <div class="flex flex-row">
                   <div class="w-full flex justify-center mt-7">
-                    <p class="font-['Baloo'] text-lg">{{ price }}</p>
+                    <p class="font-['Baloo'] text-lg">{{price}}</p>
                   </div>
                   <div class="w-full">
-                    <input type="checkbox" 
+                    <input type="checkbox" :id="menu" :value="{name,price}" v-model="cart"
                       class="checkbox checkbox-success checkbox-md ml-8 mt-7" />
                   </div>
+                  
                 </div>
               </div>
             </div>
@@ -145,9 +168,9 @@ const yourText = ref('')
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>name</td>
-                  <td>price฿</td>
+                <tr v-for="{name,price} in cart" >
+                  <td>{{name}}</td>
+                  <td>{{price}}</td>
                   <td class="pl-[15px]">
                     <button class="btn btn-xs btn-circle btn-ghost btn-active">-</button>
                     1
@@ -156,7 +179,7 @@ const yourText = ref('')
                 </tr>
                 <tr class="text-left">
                   <th>Total Amount:</th>
-                  <th>total  Baht</th>
+                  <th>{{ total }}</th>
                 </tr>
               </tbody>
             </table>
