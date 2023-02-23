@@ -44,7 +44,7 @@ const totalAmount = computed(() => {
       <!-- menu -->
       <div id="menu" class="flex flex-col w-[20%] h-[100%]">
         <div id="profile" class="flex flex-col mt-[80px]">
-          <img id="profilepic" src="./assets/Dr.rash.jpg" alt="profilePic"  class="rounded-lg"/>
+          <img id="profilepic" src="./assets/Dr.rash.jpg" alt="profilePic" class="rounded-lg" />
           <h1 id="name" class="text-center text-xl font-['Baloo'] mt-3">
             Dr. Marcus Rashford
           </h1>
@@ -59,8 +59,8 @@ const totalAmount = computed(() => {
         </div>
       </div>
       <!-- order -->
-      <div id="order" class="flex flex-row w-[80%] h-[91%] bg-white rounded-[59px] mt-10 mr-6">
-        <div id="selection" class="flex flex-col w-[65.14%] h-[100%]">
+    <div id="order" class="flex flex-row w-[80%] h-[91%] bg-white rounded-[59px] mt-10 mr-6">
+      <div id="selection" class="flex flex-col w-[65.14%] h-[100%]">
           <div id="type" class="flex flex-col w-[100%] h-[50%]">
             <div class="flex flex-row justify-between h-[50%]">
               <!-- selection top -->
@@ -99,8 +99,8 @@ const totalAmount = computed(() => {
               </div>
 
               <!-- <div class="w-full flex justify-end">
-                <div>Icon see all</div>
-              </div> -->
+                  <div>Icon see all</div>
+                </div> -->
             </div>
             <!-- Grid -->
             <div class="grid grid-cols-3 justify-items-center gap-y-4 overflow-scroll">
@@ -134,7 +134,7 @@ const totalAmount = computed(() => {
                 </div>
                 <div class="flex flex-row">
                   <div class="w-full flex justify-center mt-7">
-                    <p class="font-['Baloo'] text-lg" >{{ menu.price }}฿</p>
+                    <p class="font-['Baloo'] text-lg">{{ menu.price }}฿</p>
                   </div>
                   <div class="w-full">
                     <input type="checkbox" :id="menu" :value="menu" v-model="cartItem"
@@ -162,9 +162,9 @@ const totalAmount = computed(() => {
                 <tr v-for="(item, index) in cartItem ">
                   <td>{{ item.name }}</td>
                   <td>{{ item.price }}฿</td>
-                  <td class="pl-[15px]"> 
-                    <button class="btn btn-xs btn-circle btn-ghost btn-active">-</button> 
-                    1 
+                  <td class="pl-[15px]">
+                    <button class="btn btn-xs btn-circle btn-ghost btn-active">-</button>
+                    1
                     <button class="btn btn-xs btn-circle btn-ghost btn-active">+</button>
                   </td>
                 </tr>
@@ -207,5 +207,4 @@ const totalAmount = computed(() => {
   height: 50px;
   margin: auto;
 }
-
 </style>
