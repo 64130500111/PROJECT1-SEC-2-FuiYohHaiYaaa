@@ -22,7 +22,7 @@ const isActive = (index = 0) => {
   // get array of food
   menuArr = category[index].menu.sort((a, b) => a.name.localeCompare(b.name));
 
-  // array with compute function
+  // array with computed function
   filterFood = computed(() => {
     return menuArr.filter((arr) =>
       arr.name.toLowerCase().includes(userKeywords.value.toLowerCase())
