@@ -137,7 +137,7 @@ const totalAmount = computed(() => {
                     <p class="font-['Baloo'] text-lg" >{{ menu.price }}฿</p>
                   </div>
                   <div class="w-full">
-                    <input type="checkbox" :id="menu" :value="menu" v-model="cartItem"
+                    <input @input="isActive(typeNum)" type="checkbox" :id="menu" :value="menu" v-model="cartItem"
                       class="checkbox checkbox-success checkbox-md ml-8 mt-7" />
                   </div>
                 </div>
