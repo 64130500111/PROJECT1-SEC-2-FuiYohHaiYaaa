@@ -93,7 +93,7 @@ const totalAmount = computed(() => {
                     <MaterialSymbolsSearchRounded />
                   </button>
                 </div>
-                <input v-show="search" v-model.trim="userKeywords" type="text"
+                <input @input="isActive(typeNum)" v-show="search" v-model.trim="userKeywords" type="text"
                   placeholder="Type keyword..."
                   class="w-[10em] h-8 rounded-md ml-3 mt-5 p-2 bg-white border border-gray-500" />
               </div>
@@ -137,7 +137,7 @@ const totalAmount = computed(() => {
                     <p class="font-['Baloo'] text-lg" >{{ menu.price }}฿</p>
                   </div>
                   <div class="w-full">
-                    <input @input="isActive(typeNum)" type="checkbox" :id="menu" :value="menu" v-model="cartItem"
+                    <input type="checkbox" :id="menu" :value="menu" v-model="cartItem"
                       class="checkbox checkbox-success checkbox-md ml-8 mt-7" />
                   </div>
                 </div>
